@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>LaTeX Studio</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      (() => {
+        function showStartupError(message, stack) {
+          var text =
+            "LaTeX Studio failed to start\n\n" +
+            (message || "Unknown error") +
+            (stack ? "\n\n" + stack : "");
+          try {
+            const internals = window.__TAURI_INTERNALS__;            if (internals && typeof internals.invoke === "function") {
+              void internals.invoke("report_frontend_error", { text: text });
+            }
+          } catch (_) {}
+          var root = document.getElementById("root");
+          if (!root || root.childElementCount > 0) return;
+          var box = document.createElement("pre");
+          box.id = "startup-error";
+          box.style.cssText =
+            "margin:24px;padding:20px;border:1px solid #f06464;border-radius:9px;" +
+            "background:#2a1d21;color:#ffd7d7;font:13px/1.5 ui-monospace,monospace;" +
+            "white-space:pre-wrap;overflow:auto;max-height:90vh;user-select:text";
+          box.textContent = text;
+          root.appendChild(box);
+        }
+        window.addEventListener(
+          "error",
+          (event) => {
+            showStartupError(
+              event.message || "Script failed to load",
+              event.error && event.error.stack,
+            );
+          },
+          true,
+        );
+        window.addEventListener("unhandledrejection", (event) => {
+          var reason = event.reason;
+          showStartupError(
+            reason && reason.message ? reason.message : String(reason),
+            reason && reason.stack,
+          );
+        });
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

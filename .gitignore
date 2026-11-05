@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.DS_Store
+src-tauri/target/
+src-tauri/gen/
+*.log
+.latexstudio/
+coverage/
+*.tsbuildinfo
+.idea/
+*.iml
+/bin/
+release/*.dmg
