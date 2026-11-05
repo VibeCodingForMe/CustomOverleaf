@@ -1,1 +1,1 @@
-7fe9d41de4212d97def63ece25c78e9dd60ff7e3fa21b3d22c23019674bd8b38  LaTeX Studio_1.0.0_aarch64.dmg
+fb2343d0a4e32fcdd418ae9c4f2daef4fadb94d001de100f0b8ddc836e956bd1  LaTeX Studio_1.0.0_aarch64.dmg
